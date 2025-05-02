@@ -76,6 +76,8 @@ pfNJLciRlNpKXtc4QfQJStJyE3bmRpFzE0e3W6Ux+iY61UlYjxCD
     try {
       const { text, algorithm, key } = req.body;
       
+      console.log("Encryption request with algorithm:", algorithm);
+      
       if (!text || !algorithm) {
         return res.status(400).json({ message: "Text and algorithm are required" });
       }
