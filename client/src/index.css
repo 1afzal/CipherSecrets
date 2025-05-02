@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 191 97% 49%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 142 71% 45%;
+  --radius: 0.5rem;
+
+  /* Custom CipherSpace colors */
+  --matrix-green: 142 71% 45%;
+  --dark-blue: 206 100% 9%;
+  --hacker-black: 280 100% 2.5%;
+  --electric-blue: 191 97% 49%;
+  --terminal-green: 120 100% 60%;
+  --terminal-text: 0 0% 80%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-[#0D0208] text-[#CCCCCC];
+    background-image: 
+      radial-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+      radial-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
+  }
+
+  /* Matrix Animation */
+  @keyframes matrix {
+    0% { transform: translateY(-5000px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* Terminal Cursor Animation */
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  /* Glitch Animation */
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  /* Glow Animation */
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px #00FF41; }
+    100% { box-shadow: 0 0 20px #00FF41, 0 0 30px #00FF41; }
+  }
+}
+
+/* Custom classes */
+.terminal {
+  @apply border border-[#00FF41] shadow-[0_0_10px_#00FF41];
+}
+
+.matrix-bg {
+  @apply relative overflow-hidden;
+}
+
+.matrix-bg::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.8)] opacity-20 -z-10;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="5000"><text y="20" fill="%2300FF41">01010101010101010111001010101010010101010101010100101010111010110101</text></svg>');
+  animation: matrix 25s linear infinite;
+}
+
+.typing::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+.cipher-card:hover {
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-matrix-green {
+  @apply text-[#00FF41];
+}
+
+.text-terminal-green {
+  @apply text-[#33FF33];
+}
+
+.text-electric-blue {
+  @apply text-[#4CC9F0];
+}
+
+.text-terminal-text {
+  @apply text-[#CCCCCC];
+}
+
+.bg-hacker-black {
+  @apply bg-[#0D0208];
+}
+
+.bg-dark-blue {
+  @apply bg-[#001B2E];
+}
+
+.bg-matrix-green {
+  @apply bg-[#00FF41];
+}
+
+.border-matrix-green {
+  @apply border-[#00FF41];
+}
