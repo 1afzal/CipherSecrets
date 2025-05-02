@@ -104,17 +104,22 @@ pfNJLciRlNpKXtc4QfQJStJyE3bmRpFzE0e3W6Ux+iY61UlYjxCD
           result = encryptRC4(text, key || "");
           break;
         case "rsa":
-          // Use the provided key or default to the demo public key
-          const publicKeyToUse = key || rsaKeys.publicKey;
-          const buffer = Buffer.from(text);
-          const encrypted = publicEncrypt(
-            {
-              key: publicKeyToUse,
-              padding: 1, // RSA_PKCS1_PADDING
-            },
-            buffer
-          );
-          result = encrypted.toString('base64');
+          try {
+            // Use the provided key or default to the demo public key
+            const publicKeyToUse = key || rsaKeys.publicKey;
+            const buffer = Buffer.from(text);
+            const encrypted = publicEncrypt(
+              {
+                key: publicKeyToUse,
+                padding: 1, // RSA_PKCS1_PADDING for compatibility
+              },
+              buffer
+            );
+            result = encrypted.toString('base64');
+          } catch (error) {
+            console.error('RSA encryption error:', error);
+            throw error;
+          }
           break;
         case "caesar":
           const shift = parseInt(key) || 3;
@@ -160,17 +165,22 @@ pfNJLciRlNpKXtc4QfQJStJyE3bmRpFzE0e3W6Ux+iY61UlYjxCD
           result = decryptRC4(text, key || "");
           break;
         case "rsa":
-          // Use the provided key or default to the demo private key
-          const privateKeyToUse = key || rsaKeys.privateKey;
-          const buffer = Buffer.from(text, 'base64');
-          const decrypted = privateDecrypt(
-            {
-              key: privateKeyToUse,
-              padding: 1, // RSA_PKCS1_PADDING
-            },
-            buffer
-          );
-          result = decrypted.toString('utf8');
+          try {
+            // Use the provided key or default to the demo private key
+            const privateKeyToUse = key || rsaKeys.privateKey;
+            const buffer = Buffer.from(text, 'base64');
+            const decrypted = privateDecrypt(
+              {
+                key: privateKeyToUse,
+                padding: 1, // RSA_PKCS1_PADDING for compatibility
+              },
+              buffer
+            );
+            result = decrypted.toString('utf8');
+          } catch (error) {
+            console.error('RSA decryption error:', error);
+            throw error;
+          }
           break;
         case "caesar":
           const shift = parseInt(key) || 3;
