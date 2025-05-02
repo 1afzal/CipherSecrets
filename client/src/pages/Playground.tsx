@@ -149,6 +149,7 @@ export default function Playground() {
                     <SelectItem value="tripledes">Triple DES</SelectItem>
                     <SelectItem value="rc4">RC4</SelectItem>
                     <SelectItem value="rabbit">Rabbit</SelectItem>
+                    <SelectItem value="rsa">RSA (Asymmetric Encryption)</SelectItem>
                     <SelectItem value="vigenere">Vigenère Cipher</SelectItem>
                     <SelectItem value="caesar">Caesar Cipher</SelectItem>
                   </SelectContent>
