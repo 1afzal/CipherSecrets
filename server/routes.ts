@@ -2,8 +2,11 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 // Import crypto modules
-import * as CryptoJS from 'crypto-js';
 import { publicEncrypt, privateDecrypt } from 'crypto';
+import { 
+  encryptAES, encryptDES, encryptTripleDES, encryptRabbit, encryptRC4,
+  decryptAES, decryptDES, decryptTripleDES, decryptRabbit, decryptRC4
+} from './crypto-adapter';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for algorithms
@@ -86,19 +89,19 @@ pfNJLciRlNpKXtc4QfQJStJyE3bmRpFzE0e3W6Ux+iY61UlYjxCD
       
       switch (algorithm) {
         case "aes":
-          result = CryptoJS.AES.encrypt(text, key || "").toString();
+          result = encryptAES(text, key || "");
           break;
         case "des":
-          result = CryptoJS.DES.encrypt(text, key || "").toString();
+          result = encryptDES(text, key || "");
           break;
         case "tripledes":
-          result = CryptoJS.TripleDES.encrypt(text, key || "").toString();
+          result = encryptTripleDES(text, key || "");
           break;
         case "rabbit":
-          result = CryptoJS.Rabbit.encrypt(text, key || "").toString();
+          result = encryptRabbit(text, key || "");
           break;
         case "rc4":
-          result = CryptoJS.RC4.encrypt(text, key || "").toString();
+          result = encryptRC4(text, key || "");
           break;
         case "rsa":
           // Use the provided key or default to the demo public key
@@ -142,19 +145,19 @@ pfNJLciRlNpKXtc4QfQJStJyE3bmRpFzE0e3W6Ux+iY61UlYjxCD
       
       switch (algorithm) {
         case "aes":
-          result = CryptoJS.AES.decrypt(text, key || "").toString(CryptoJS.enc.Utf8);
+          result = decryptAES(text, key || "");
           break;
         case "des":
-          result = CryptoJS.DES.decrypt(text, key || "").toString(CryptoJS.enc.Utf8);
+          result = decryptDES(text, key || "");
           break;
         case "tripledes":
-          result = CryptoJS.TripleDES.decrypt(text, key || "").toString(CryptoJS.enc.Utf8);
+          result = decryptTripleDES(text, key || "");
           break;
         case "rabbit":
-          result = CryptoJS.Rabbit.decrypt(text, key || "").toString(CryptoJS.enc.Utf8);
+          result = decryptRabbit(text, key || "");
           break;
         case "rc4":
-          result = CryptoJS.RC4.decrypt(text, key || "").toString(CryptoJS.enc.Utf8);
+          result = decryptRC4(text, key || "");
           break;
         case "rsa":
           // Use the provided key or default to the demo private key
