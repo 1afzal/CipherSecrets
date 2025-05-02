@@ -16,31 +16,23 @@ export default function Header() {
         <nav>
           <ul className="flex flex-wrap justify-center space-x-2 md:space-x-6">
             <li>
-              <Link href="/#about">
-                <a className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/#about" ? "text-matrix-green" : ""}`}>
-                  About
-                </a>
+              <Link href="/#about" className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/#about" ? "text-matrix-green" : ""}`}>
+                About
               </Link>
             </li>
             <li>
-              <Link href="/#algorithms">
-                <a className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/#algorithms" ? "text-matrix-green" : ""}`}>
-                  Algorithms
-                </a>
+              <Link href="/#algorithms" className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/#algorithms" ? "text-matrix-green" : ""}`}>
+                Algorithms
               </Link>
             </li>
             <li>
-              <Link href="/compare">
-                <a className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/compare" ? "text-matrix-green" : ""}`}>
-                  Compare
-                </a>
+              <Link href="/compare" className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/compare" ? "text-matrix-green" : ""}`}>
+                Compare
               </Link>
             </li>
             <li>
-              <Link href="/playground">
-                <a className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/playground" ? "text-matrix-green" : ""}`}>
-                  Playground
-                </a>
+              <Link href="/playground" className={`text-terminal-green hover:text-matrix-green transition duration-300 ${location === "/playground" ? "text-matrix-green" : ""}`}>
+                Playground
               </Link>
             </li>
           </ul>
